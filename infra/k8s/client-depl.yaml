@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: alexandrughinea90/client
+          image: alexandrughinea90/ticketing-client
 ---
 apiVersion: v1
 kind: Service
