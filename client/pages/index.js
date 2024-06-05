@@ -1,42 +1,35 @@
-import { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import buildClient from '../api/build-client';
+import styles from '../LandingPage.module.css'; // Assuming you have a CSS module for styling
 
-export default () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-
-    const response = await axios.post('/api/users/signup', {
-      email,
-      password,
-    });
-
-    console.log(response.data);
-  };
-
+const LandingPage = ({ currentUser }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
-      <div className="form-group">
-        <label>Email Address</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-        />
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <img src="/path-to-your-image.jpg" alt="Banking App" className={styles.heroImage} />
+        <h1>Welcome to notBank</h1>
       </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          className="form-control"
-        />
+      <div className={styles.loginStatus}>
+        {currentUser ? (
+          <h2>You are signed in</h2>
+        ) : (
+          <h2>You are NOT signed in</h2>
+        )}
       </div>
-      <button className="btn btn-primary">Sign Up</button>
-    </form>
+      <div className={styles.navigation}>
+        <button className={styles.button}>About Us</button>
+        <button className={styles.button}>Services</button>
+        <button className={styles.button}>Contact</button>
+      </div>
+    </div>
   );
 };
+
+LandingPage.getInitialProps = async context => {
+  console.log('LANDING PAGE!');
+  const client = buildClient(context);
+  const { data } = await client.get('/api/users/currentuser');
+  return data;
+};
+
+export default LandingPage;
