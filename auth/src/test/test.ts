@@ -17,9 +17,6 @@ describe('POST /api/users/signin', () => {
       password: 'hashedpassword',
     };
 
-    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
-    (Password.compare as jest.Mock).mockResolvedValue(true);
-
     // Mocking JWT
     process.env.JWT_KEY = 'testjwtkey';
 
