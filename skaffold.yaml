@@ -16,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: alexandrughinea90/ticketing-client
+    - image: alexandrughinea90/bank-client
       context: client
       docker:
         dockerfile: Dockerfile
