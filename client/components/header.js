@@ -9,6 +9,7 @@ export default ({ currentUser }) => {
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
       return (
+        
         <li key={href} className="nav-item">
           <Link className="nav-link" href={href}>
             {label}
@@ -20,7 +21,7 @@ export default ({ currentUser }) => {
   return (
     <nav className="navbar navbar-light bg-light">
       <Link className="navbar-brand" href="/">
-        notBank
+         masterBank.dev
       </Link>
 
       <div className="d-flex justify-content-end">
